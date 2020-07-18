@@ -9,8 +9,17 @@ namespace ED_OpArray
         {
             try
             {
+                Imprimir();
+                Console.WriteLine("-------------------");
+                
                 Agregar("Cero");
-                Agregar("Cero");
+                Agregar("Uno");
+                Agregar("Uno");
+                Agregar("Dos");
+                Console.WriteLine("-------------------");
+
+                Imprimir();
+                Console.WriteLine("-------------------");
             }
             catch (Exception ex)
             {
@@ -67,17 +76,47 @@ namespace ED_OpArray
                     throw new Exception("El arreglo está lleno!");
                 }
 
-                if (!ValidaExiste(Dato)) 
+                if (ValidaExiste(Dato)) 
                 {
-                    int arregloLength = Arreglo.Length;
-                    for (int i = 0; i < arregloLength; i++) 
+                    Console.WriteLine($"ya existe el dato '{Dato}' en el arreglo");
+                    return;
+                }
+
+                int arregloLength = Arreglo.Length;
+                for (int i = 0; i < arregloLength; i++)
+                {
+                    if (Arreglo[i] == null)
                     {
-                        if (Arreglo[i] == null) 
-                        {
-                            Arreglo[i] = Dato;
-                            break;
-                        }
+                        Arreglo[i] = Dato;
+                        break;
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        private static void Imprimir() 
+        {
+            try
+            {
+                if (ValidaVacio()) 
+                {
+                    Console.WriteLine("El arreglo está vacío");
+                    return;
+                }
+
+                int arregloLenght = Arreglo.Length;
+                for (int i = 0; i < arregloLenght; i++) 
+                {
+                    if (Arreglo[i] == null) 
+                    {
+                        Console.WriteLine("Fin del arreglo");
+                        break;
+                    }
+
+                    Console.WriteLine($"[{i}] - {Arreglo[i]}");
                 }
             }
             catch (Exception ex)
