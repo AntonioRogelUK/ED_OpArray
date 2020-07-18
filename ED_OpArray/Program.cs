@@ -16,6 +16,10 @@ namespace ED_OpArray
                 Agregar("Uno");
                 Agregar("Uno");
                 Agregar("Dos");
+                Agregar("Tres");
+                Agregar("Cuatro");
+                Agregar("Cinco");
+                Agregar("Seis");
                 Console.WriteLine("-------------------");
 
                 Imprimir();
@@ -27,10 +31,13 @@ namespace ED_OpArray
                 Buscar("Dos", true);
                 Console.WriteLine("-------------------");
 
-                Actualizar("Uno", "Cuatro");
+                //Actualizar("Uno", "Cuatro");
                 Console.WriteLine("-------------------");
                 Imprimir();
                 Console.WriteLine("-------------------");
+
+
+                Eliminar("Tres");
             }
             catch (Exception ex)
             {
@@ -192,6 +199,35 @@ namespace ED_OpArray
 
                 Arreglo[Encontrado] = NuevoValor;
                 Console.WriteLine($"El dato {Dato} fue actualizado a {Arreglo[Encontrado]}");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        private static void Eliminar(string Dato) 
+        {
+            try
+            {
+                int Encontrado = Buscar(Dato);
+                if (Encontrado < 0) 
+                {
+                    Console.WriteLine($"El dato {Dato} no fué encontrado");
+                    return;
+                }
+
+                int arregloLenght = Arreglo.Length;
+                for (int IndiceActual = Encontrado; IndiceActual < arregloLenght; IndiceActual++) 
+                {
+                    int IndiceSiguiente = IndiceActual + 1;
+                    if (IndiceSiguiente == arregloLenght || Arreglo[IndiceSiguiente] == null) 
+                    {
+                        Arreglo[IndiceActual] = null;
+                        break;
+                    }
+
+                    Arreglo[IndiceActual] = Arreglo[IndiceSiguiente];
+                }
             }
             catch (Exception ex)
             {
