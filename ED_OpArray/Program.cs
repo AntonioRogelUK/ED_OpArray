@@ -20,6 +20,12 @@ namespace ED_OpArray
 
                 Imprimir();
                 Console.WriteLine("-------------------");
+
+                Buscar("Seis", true);
+                Console.WriteLine("-------------------");
+
+                Buscar("Dos", true);
+                Console.WriteLine("-------------------");
             }
             catch (Exception ex)
             {
@@ -118,6 +124,50 @@ namespace ED_OpArray
 
                     Console.WriteLine($"[{i}] - {Arreglo[i]}");
                 }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        private static int Buscar(string Dato, bool MostrarMensajes = false) 
+        {
+            try
+            {
+                if (ValidaVacio()) 
+                {
+                    if (MostrarMensajes) 
+                    {
+                        Console.WriteLine("El arreglo está vacío");
+                    }
+                    return -1;
+                }
+
+                int arregloLenght = Arreglo.Length;
+                for (int i = 0; i < arregloLenght; i++)
+                {
+                    if (Arreglo[i] == null) 
+                    {
+                        break;
+                    }
+                    
+                    if (Arreglo[i].ToUpper() == Dato.ToUpper()) 
+                    {
+                        if (MostrarMensajes) 
+                        {
+                            Console.WriteLine($"Encontrado [{i}] - {Arreglo[i]}");
+                        }
+
+                        return i;
+                    }
+                }
+
+                if (MostrarMensajes)
+                {
+                    Console.WriteLine($"El dato '{Dato}' no se encontró");
+                }
+
+                return -1;
             }
             catch (Exception ex)
             {
