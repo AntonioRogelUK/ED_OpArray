@@ -7,6 +7,7 @@ namespace ED_OpArray
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+            Console.WriteLine("Hello World!");
         }
     }
 }
