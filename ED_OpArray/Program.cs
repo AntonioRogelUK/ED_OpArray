@@ -26,6 +26,11 @@ namespace ED_OpArray
 
                 Buscar("Dos", true);
                 Console.WriteLine("-------------------");
+
+                Actualizar("Uno", "Cuatro");
+                Console.WriteLine("-------------------");
+                Imprimir();
+                Console.WriteLine("-------------------");
             }
             catch (Exception ex)
             {
@@ -168,6 +173,25 @@ namespace ED_OpArray
                 }
 
                 return -1;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        private static void Actualizar(string Dato, string NuevoValor) 
+        {
+            try
+            {
+                int Encontrado = Buscar(Dato);
+                if (Encontrado < 0) 
+                {
+                    Console.WriteLine($"El dato {Dato} no fué encontrado");
+                    return;
+                }
+
+                Arreglo[Encontrado] = NuevoValor;
+                Console.WriteLine($"El dato {Dato} fue actualizado a {Arreglo[Encontrado]}");
             }
             catch (Exception ex)
             {
